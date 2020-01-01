@@ -8,7 +8,7 @@ import subprocess
 from typing import List
 from tempfile import NamedTemporaryFile
 
-USE_VALGRIND = False
+USE_VALGRIND = True
 
 TEST_DIR = Path(__file__).parent
 
