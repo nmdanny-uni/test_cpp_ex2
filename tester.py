@@ -38,9 +38,9 @@ class Output:
 
     def compare_to(self, other: Output):
         # "self" is the school's output and "other" is YOUR output
-        assert self.return_code == other.return_code
-        assert self.stdout == other.stdout
-        assert self.stderr == other.stderr
+        assert self.return_code == other.return_code, "Return code mismatch(left=school, right=yours)"
+        assert self.stdout == other.stdout, "STDOUT mismatch(left=school, right=yours)"
+        assert self.stderr == other.stderr, "STDERR mismatch(left=school, right=yours)"
 
     def check_valgrind_out(self):
         if "ERROR SUMMARY: 0" not in self.valgrind_out:
@@ -90,9 +90,9 @@ def test_invalid(path: str):
     if Path(path).suffix != ".csv":
         # the school's solution doesn't check for valid extension, so I test this differently
         my_out = run_with_cmd([str(EXECUTABLE_PATH), path], valgrind=USE_VALGRIND)
-        assert "Invalid input\n" == my_out.stderr
-        assert 0 != my_out.return_code
-        assert "" == my_out.stdout
+        assert "Invalid input\n" == my_out.stderr, "A non .csv file should result in 'Invalid Input' error message"
+        assert 0 != my_out.return_code, "A non .csv file should result in a non-zero return code"
+        assert "" == my_out.stdout, "Upon failure, nothing should be emitted to STDOUT"
         return
     _test_csv(path)
 
