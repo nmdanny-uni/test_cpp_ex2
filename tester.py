@@ -27,7 +27,7 @@ VALID_DIR = TEST_DIR / "valid"
 INVALID_DIR = TEST_DIR / "invalid"
 
 VALID_CSVS = [ str(VALID_DIR / path) for path in os.listdir(VALID_DIR)]
-INVALID_CSV = [ str(INVALID_DIR / path) for path in os.listdir(INVALID_DIR)]
+INVALID_CSV = [ str(INVALID_DIR / path) for path in os.listdir(INVALID_DIR)] + ["NON_EXISTENT_FILE.csv"]
 
 @dataclass
 class Output:
